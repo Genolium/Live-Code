@@ -150,6 +150,8 @@ namespace Trix_UPD
             }
             System.IO.File.WriteAllText(path, html);
             main.ReloadLV();
+            main.ClosePr.IsEnabled = true;
+            main.Save.IsEnabled = true;
             CloseWindow(main, path);
             this.Owner.Close();
             this.Close();

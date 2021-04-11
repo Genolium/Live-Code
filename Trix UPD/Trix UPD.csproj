@@ -185,22 +185,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Demos\bootstrap.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Demos\bootstrap_utf8.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Demos\empty.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Demos\empty_utf8.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="update-arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Иконка.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Demos\empty_utf8.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Demos\empty.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Demos\bootstrap_utf8.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Demos\bootstrap.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

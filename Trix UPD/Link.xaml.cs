@@ -201,6 +201,8 @@ namespace Trix_UPD
                     {
                         main.MainGrid.Children[i].IsEnabled = true;
                     }
+                    main.ClosePr.IsEnabled = true;
+                    main.Save.IsEnabled = true;
                     main.ReloadLV();
                     this.Owner.Close();
                     this.Close();

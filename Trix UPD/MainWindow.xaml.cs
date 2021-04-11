@@ -151,6 +151,9 @@ namespace Trix_UPD
             Add_new_file.IsEnabled = false;
             Copy_file.IsEnabled = false;
 
+            ClosePr.IsEnabled = false;
+            Save.IsEnabled = false;
+
             List_files.Items.Clear();
             Adress.Content = "";
             Path_link.Text = "";
@@ -238,6 +241,8 @@ namespace Trix_UPD
                 EnableScreen(dialog.FileName);
                 RTB.IsEnabled = true;
             }
+            ClosePr.IsEnabled = true;
+            Save.IsEnabled = true;
         }
 
         private void Link_click(object sender, RoutedEventArgs e)
@@ -253,14 +258,14 @@ namespace Trix_UPD
             bool a = true;
             if (settingsWindow.ShowDialog() == true)
             {
-                if (a)
-                    MessageBox.Show("Авторизация пройдена");
-                else
-                    MessageBox.Show("Неверный пароль");
+                //if (a)
+                //    MessageBox.Show("1");
+                //else
+                //    MessageBox.Show("2");
             }
             else
             {
-                MessageBox.Show("Авторизация не пройдена");
+                //MessageBox.Show("2");
             }
         }
         System.Windows.Threading.DispatcherTimer timer1 = new System.Windows.Threading.DispatcherTimer();
