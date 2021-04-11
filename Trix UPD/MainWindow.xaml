@@ -1,0 +1,70 @@
+﻿<Window x:Class="Trix_UPD.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trix_UPD"
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        MinHeight="600" MinWidth="600" WindowState="Maximized"
+        Title="Trix" Height="720" Width="1280">
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.7*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="1.2*"></RowDefinition>
+            <RowDefinition Height="1.05*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2" x:Name="GridThird">
+            <Menu Grid.ColumnSpan="2" Margin="0,0,0,0">
+                <MenuItem Header="Файл">
+                    <MenuItem Header="Создать проект">
+                        <MenuItem Header="Новый проект"  Click="Create_project_click"></MenuItem>
+                        <MenuItem Header="Скопировать сайт (по ссылке)" Click="Link_click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Открыть проект" >
+                        <MenuItem Header="Последний проект" Name="LastPr"></MenuItem>
+                        <MenuItem Header="Расположение" Click="Open_project_click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem x:Name="Save" Header="Сохранить" IsEnabled="False">
+                    </MenuItem>
+                    <MenuItem x:Name="ClosePr" Header="Закрыть текущий проект" IsEnabled="False" Click="ClosePr_Click"></MenuItem>
+                    <Separator />
+                    <MenuItem Header="Выход" Click="ExitClick"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Добавить" IsEnabled="False" Name="AddFile">
+                    <MenuItem Header="Добавить новый файл" IsEnabled="False"  Name="Add_new_file" Click="Add_new_file_Click"></MenuItem>
+                    <MenuItem Header="Добавить файл (скопировать по ссылке)" IsEnabled="False" Name="Copy_file" Click="Copy_file_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Настройки" Click="Settings_click"></MenuItem>
+            </Menu>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="15, 0, 0 , 0" x:Name="GridSecond">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="0.8*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="Path_link" Visibility="Hidden" Text="" TextChanged="Path_link_TextChanged"></TextBox>
+            <Button x:Name="Reload_btn" Grid.Column="0" Margin="0, 7, 10, 1" BorderBrush="#FFD0D0D0" Click="Reload_Click" IsEnabled="False">
+                <Button.Background>
+                    <ImageBrush ImageSource="update-arrow.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <ListView x:Name="List_files" Grid.Row="1" Grid.Column="1" Margin="0, 4, 10, 1" Background="#FFD9E9FF" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible"></ListView>
+            <Label x:Name="Adress" Background="#FFFFF7E7" Grid.Row="2" Margin="0, 4, 10, 0"></Label>
+        </Grid>
+        <wpf:ChromiumWebBrowser IsEnabled="True" Margin="10,7,0,0" Grid.Column="0" Grid.Row="1" x:Name="Browser" BorderBrush="Black" BorderThickness="2"/>
+        <RichTextBox x:Name="RTB" IsEnabled="False" Grid.Row="2" Grid.ColumnSpan="2" Margin="10, 12, 10, 10" Background="#FFF0D9D9" Block.LineHeight="1" AcceptsTab="True" AllowDrop="True" TextChanged="RTB_TextChanged" IsEnabledChanged="RTB_IsEnabledChanged" FontSize="16">
+            <FlowDocument>
+                <Paragraph>
+                    <Run x:Name="paragr" Text="Документ не открыт"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+    </Grid>
+</Window>

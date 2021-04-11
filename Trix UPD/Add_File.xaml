@@ -1,0 +1,41 @@
+﻿<Window x:Class="Trix_UPD.Add_File"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Trix_UPD"
+        mc:Ignorable="d"
+        Title="Создать новый файл" Height="200" Width="800" ResizeMode="NoResize">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height ="10*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Content="Название файла" HorizontalAlignment="Left" VerticalAlignment="Center" Width="172" FontSize="20"/>
+        <Label Grid.Row="1" Content="Тип файла (расширение)" HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="20"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="namefilelabel" Text="filename" FontSize="20" Margin="5,0,0,0" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Name="extensionList" Margin="5,0,0,0" VerticalAlignment="Center" SelectionChanged="extensionList_SelectionChanged">
+            <ComboBoxItem >
+                <TextBlock>.html</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>.css</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>.js</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>.php</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>.txt</TextBlock>
+            </ComboBoxItem>
+        </ComboBox>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Создать файл" ToolTip="Перед нажатием проверьте все настройки" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="275" Click="Button_Click" BorderBrush="#FF545F63" Background="#FFD35144" Height="40" Foreground="White"/>
+    </Grid>
+</Window>
