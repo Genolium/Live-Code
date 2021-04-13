@@ -51,6 +51,9 @@
             </Grid.RowDefinitions>
             <TextBox x:Name="Path_link" Visibility="Hidden" Text="" TextChanged="Path_link_TextChanged"></TextBox>
             <Button x:Name="Reload_btn" Grid.Column="0" Margin="0, 7, 10, 1" BorderBrush="#FFD0D0D0" Click="Reload_Click" IsEnabled="False">
+                <Button.Foreground>
+                    <ImageBrush/>
+                </Button.Foreground>
                 <Button.Background>
                     <ImageBrush ImageSource="update-arrow.png" Stretch="Uniform"/>
                 </Button.Background>
@@ -58,7 +61,7 @@
             <ListView x:Name="List_files" Grid.Row="1" Grid.Column="1" Margin="0, 4, 10, 1" Background="#FFD9E9FF" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible"></ListView>
             <Label x:Name="Adress" Background="#FFFFF7E7" Grid.Row="2" Margin="0, 4, 10, 0"></Label>
         </Grid>
-        <wpf:ChromiumWebBrowser IsEnabled="True" Margin="10,7,0,0" Grid.Column="0" Grid.Row="1" x:Name="Browser" BorderBrush="Black" BorderThickness="2"/>
+        <wpf:ChromiumWebBrowser IsEnabled="True" Margin="10,7,0,0" Grid.Column="0" Grid.Row="1" x:Name="Browser" BorderBrush="#FF090606" BorderThickness="2" Background="#FF464646"/>
         <RichTextBox x:Name="RTB" IsEnabled="False" Grid.Row="2" Grid.ColumnSpan="2" Margin="10, 12, 10, 10" Background="#FFF0D9D9" Block.LineHeight="1" AcceptsTab="True" AllowDrop="True" TextChanged="RTB_TextChanged" IsEnabledChanged="RTB_IsEnabledChanged" FontSize="16">
             <FlowDocument>
                 <Paragraph>

@@ -23,5 +23,18 @@ namespace Trix_UPD
         {
             InitializeComponent();
         }
+        private void CreateErrorMessage(string Error_text)
+        {
+            MessageBoxResult result = MessageBox.Show(Error_text, "Ошибка", MessageBoxButton.OK);
+        }
+        public string result
+        {
+            get { return tblock.Text; }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            this.DialogResult = true;
+        }
     }
 }

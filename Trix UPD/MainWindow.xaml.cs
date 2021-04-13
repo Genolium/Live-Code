@@ -255,17 +255,19 @@ namespace Trix_UPD
         private void Settings_click(object sender, RoutedEventArgs e)
         {
             Settings settingsWindow = new Settings();
-            bool a = true;
+            settingsWindow.tblock.Text = paragr.FontSize.ToString();
             if (settingsWindow.ShowDialog() == true)
             {
-                //if (a)
-                //    MessageBox.Show("1");
-                //else
-                //    MessageBox.Show("2");
-            }
-            else
-            {
-                //MessageBox.Show("2");
+                int a;
+                if (int.TryParse(settingsWindow.result, out a))
+                {
+                    if(a>0)
+                        paragr.FontSize = Convert.ToDouble(a);
+                    else
+                        CreateErrorMessage("Число должно быть больше 0");
+                }
+                else
+                    CreateErrorMessage("Неправильно введено число");
             }
         }
         System.Windows.Threading.DispatcherTimer timer1 = new System.Windows.Threading.DispatcherTimer();
