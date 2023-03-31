@@ -106,12 +106,36 @@ namespace Trix_UPD
             DisableScreen();
             Application.Current.Shutdown();
         }
+
+        public void Save_click(object sender, RoutedEventArgs e)
+        {
+            try
+                {
+                    TextRange range;
+                    FileStream fStream;
+                    range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
+                    fStream = new FileStream(Adress.Content.ToString(), FileMode.Create);
+                    range.Save(fStream, DataFormats.Text);
+                    fStream.Close();
+                    Browser.Reload();
+                }
+                catch
+                {}
+        }
+
         System.Windows.Threading.DispatcherTimer timer2 = new System.Windows.Threading.DispatcherTimer();
         private void listviewitem_click(object sender, RoutedEventArgs e)
         {
             ListViewItem lvs = e.Source as ListViewItem;
             if (lvs.IsEnabled)
             {
+                TextRange range;
+                FileStream fStream;
+                range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
+                fStream = new FileStream(Adress.Content.ToString(), FileMode.Create);
+                range.Save(fStream, DataFormats.Text);
+                fStream.Close();
+
                 RTB.IsEnabled = false;
                 AddFile.IsEnabled = true;
                 Add_new_file.IsEnabled = true;
@@ -120,8 +144,7 @@ namespace Trix_UPD
                 paragr.Text = " ";
                 Adress.Content = lvs.Content.ToString();
                 RTB.IsEnabled = true;
-                TextRange range;
-                FileStream fStream;
+
                 range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
                 fStream = new FileStream(lvs.Content.ToString(), FileMode.Open);
                 range.Load(fStream, DataFormats.Text);
@@ -366,18 +389,19 @@ namespace Trix_UPD
             Add_File addf = new Add_File();
             if (addf.ShowDialog() == true)
             {
-                if (!DoesFileExist($"{Path_link.Text}\\{addf.FileName}"))
-                    File.Create($"{Path_link.Text}\\{addf.FileName}").Close();
+                string path = System.IO.Path.GetDirectoryName((string)Adress.Content);
+                if (!DoesFileExist($"{path}\\{addf.FileName}"))
+                    File.Create($"{path}\\{addf.FileName}").Close();
                 else
                     MessageBox.Show("Файл с таким именем уже существует");
                 TextRange range;
                 FileStream fStream;
                 range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
-                fStream = new FileStream($"{Path_link.Text}\\{addf.FileName}", FileMode.Open);
+                fStream = new FileStream($"{path}\\{addf.FileName}", FileMode.Open);
                 range.Load(fStream, DataFormats.Text);
                 fStream.Close();
-                Browser.Address = $"{Path_link.Text}\\{addf.FileName}";
-                Adress.Content = $"{Path_link.Text}\\{addf.FileName}";
+                Browser.Address = $"{path}\\{addf.FileName}";
+                Adress.Content = $"{path}\\{addf.FileName}";
                 Browser.Reload();
                 ReloadLV();
             }
@@ -391,9 +415,10 @@ namespace Trix_UPD
             Copy_File_Link cfl = new Copy_File_Link();
             if (cfl.ShowDialog() == true)
             {
-                if (!DoesFileExist($"{Path_link.Text}\\{cfl.FileName}"))
+                string path = System.IO.Path.GetDirectoryName((string)Adress.Content);
+                if (!DoesFileExist($"{path}\\{cfl.FileName}"))
                 {
-                    string path1 = $"{Path_link.Text}\\{cfl.FileName}";
+                    string path1 = $"{path}\\{cfl.FileName}";
                     System.IO.File.WriteAllText(path1, cfl.HTML);
                 }
                 else
@@ -401,10 +426,10 @@ namespace Trix_UPD
                 TextRange range;
                 FileStream fStream;
                 range = new TextRange(RTB.Document.ContentStart, RTB.Document.ContentEnd);
-                fStream = new FileStream($"{Path_link.Text}\\{cfl.FileName}", FileMode.Open);
+                fStream = new FileStream($"{path}\\{cfl.FileName}", FileMode.Open);
                 range.Load(fStream, DataFormats.Text);
                 fStream.Close();
-                Adress.Content = $"{Path_link.Text}\\{cfl.FileName}";
+                Adress.Content = $"{path}\\{cfl.FileName}";
                 Browser.Address = Adress.Content.ToString();
                 Browser.Reload();
                 ReloadLV();

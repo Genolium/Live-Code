@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Trix_UPD"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="SfProText-Bold">/Resources/SFProText-bold.ttf#Sf Pro Text</FontFamily>
+        <FontFamily x:Key="SfProText-Heavy">/Resources/SFProText-heavy.ttf#Sf Pro Text</FontFamily>
+        <FontFamily x:Key="SfProText-Light">/Resources/SFProText-light.ttf#Sf Pro Text</FontFamily>
+        <FontFamily x:Key="SfProText-Medium">/Resources/SFProText-medium.ttf#Sf Pro Text</FontFamily>
+        <FontFamily x:Key="SfProText-Regular">/Resources/SFProText-regular.ttf#Sf Pro Text</FontFamily>
+        <FontFamily x:Key="SfProText-SemiBold">/Resources/SFProText-selibold.ttf#Sf Pro Text</FontFamily>        
     </Application.Resources>
 </Application>

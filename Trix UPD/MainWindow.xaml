@@ -7,64 +7,83 @@
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
         MinHeight="600" MinWidth="600" WindowState="Maximized"
-        Title="Trix" Height="720" Width="1280">
-
-    <Grid x:Name="MainGrid">
+        
+    FontFamily="{StaticResource SfProText-Light}"
+        Background="#263847"        
+        Title="Live-code" Height="720" Width="1280" Foreground="White">
+    <Window.Resources>
+        <Style TargetType="MenuItem">
+            <Setter Property="FontFamily" Value="{StaticResource SfProText-Light}"/>
+            <Setter Property="FontSize" Value="16"/>            
+            <Setter Property="Margin" Value="4 0" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid x:Name="MainGrid" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.7*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="1.2*"></RowDefinition>
-            <RowDefinition Height="1.05*"></RowDefinition>
+            <RowDefinition Height="16*"></RowDefinition>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="360*"></RowDefinition>
+            <RowDefinition Height="315*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.ColumnSpan="2" x:Name="GridThird">
-            <Menu Grid.ColumnSpan="2" Margin="0,0,0,0">
-                <MenuItem Header="Файл">
+        <Grid Background="#111D25" Grid.ColumnSpan="2" x:Name="GridThird" Margin="0,0,0,359" Grid.RowSpan="3">
+            <Menu Grid.ColumnSpan="2" Margin="0,0,0,0" Background="#111D25" Foreground="White" VerticalAlignment="Top" Height="40">
+                <MenuItem Header="Файл" Foreground="White">
                     <MenuItem Header="Создать проект">
                         <MenuItem Header="Новый проект"  Click="Create_project_click"></MenuItem>
                         <MenuItem Header="Скопировать сайт (по ссылке)" Click="Link_click"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="Открыть проект" >
                         <MenuItem Header="Последний проект" Name="LastPr"></MenuItem>
-                        <MenuItem Header="Расположение" Click="Open_project_click"></MenuItem>
+                        <MenuItem Header="Расположение" Click="Open_project_click" FontFamily="SF Pro Text"></MenuItem>
                     </MenuItem>
-                    <MenuItem x:Name="Save" Header="Сохранить" IsEnabled="False">
+                    <MenuItem x:Name="Save" Header="Сохранить" IsEnabled="False" Click="Save_click">
                     </MenuItem>
                     <MenuItem x:Name="ClosePr" Header="Закрыть текущий проект" IsEnabled="False" Click="ClosePr_Click"></MenuItem>
                     <Separator />
                     <MenuItem Header="Выход" Click="ExitClick"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Добавить" IsEnabled="False" Name="AddFile">
+                <MenuItem Header="Добавить" IsEnabled="False" Name="AddFile" Foreground="White">
                     <MenuItem Header="Добавить новый файл" IsEnabled="False"  Name="Add_new_file" Click="Add_new_file_Click"></MenuItem>
                     <MenuItem Header="Добавить файл (скопировать по ссылке)" IsEnabled="False" Name="Copy_file" Click="Copy_file_Click"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Настройки" Click="Settings_click"></MenuItem>
+                <MenuItem Header="Настройки" Click="Settings_click" Foreground="White"></MenuItem>
             </Menu>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1" Margin="15, 0, 0 , 0" x:Name="GridSecond">
+        <Grid Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" x:Name="GridSecond">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.8*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox x:Name="Path_link" Visibility="Hidden" Text="" TextChanged="Path_link_TextChanged"></TextBox>
-            <Button x:Name="Reload_btn" Grid.Column="0" Margin="0, 7, 10, 1" BorderBrush="#FFD0D0D0" Click="Reload_Click" IsEnabled="False">
-                <Button.Foreground>
-                    <ImageBrush/>
-                </Button.Foreground>
-                <Button.Background>
-                    <ImageBrush ImageSource="update-arrow.png" Stretch="Uniform"/>
-                </Button.Background>
+            <TextBox x:Name="Path_link" Visibility="Hidden" Text="" TextChanged="Path_link_TextChanged" Background="#FF004643" Foreground="White"></TextBox>
+            <Button x:Name="Reload_btn" Grid.Column="0" Margin="0, 7, 10, 1" BorderBrush="#111D25" Click="Reload_Click" IsEnabled="False" Foreground="Black">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#003243"/>
+                        <Setter Property="Foreground" Value="#fff"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#003243"/>
+                                <Setter Property="Foreground" Value="#003243"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                ↻
             </Button>
-            <ListView x:Name="List_files" Grid.Row="1" Grid.Column="1" Margin="0, 4, 10, 1" Background="#FFD9E9FF" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible"></ListView>
-            <Label x:Name="Adress" Background="#FFFFF7E7" Grid.Row="2" Margin="0, 4, 10, 0"></Label>
+            <ListView x:Name="List_files" Grid.Row="1" Grid.Column="1" Margin="0, 4, 10, 1" Background="#111D25" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible" Foreground="White"></ListView>
+            <Label x:Name="Adress" Background="#111D25" Grid.Row="2" Margin="0, 4, 10, 0" Foreground="White"></Label>
         </Grid>
-        <wpf:ChromiumWebBrowser IsEnabled="True" Margin="10,7,0,0" Grid.Column="0" Grid.Row="1" x:Name="Browser" BorderBrush="#FF090606" BorderThickness="2" Background="#FF464646"/>
-        <RichTextBox x:Name="RTB" IsEnabled="False" Grid.Row="2" Grid.ColumnSpan="2" Margin="10, 12, 10, 10" Background="#FFF0D9D9" Block.LineHeight="1" AcceptsTab="True" AllowDrop="True" TextChanged="RTB_TextChanged" IsEnabledChanged="RTB_IsEnabledChanged" FontSize="16">
-            <FlowDocument>
-                <Paragraph>
+        <wpf:ChromiumWebBrowser Padding="20" IsEnabled="True" Grid.Column="0" Grid.Row="2" x:Name="Browser" BorderBrush="#FF090606" BorderThickness="2" Background="White" />
+        <RichTextBox x:Name="RTB" IsEnabled="False" Grid.Row="3" Grid.ColumnSpan="2" Margin="10,12,10,10" Background="#111D25" Block.LineHeight="1" AcceptsTab="True" AllowDrop="True"  IsEnabledChanged="RTB_IsEnabledChanged" FontSize="16" Foreground="White" TextChanged="RTB_TextChanged">
+            <FlowDocument >
+                <Paragraph Foreground="White" FontFamily="{StaticResource SfProText-Light}">
                     <Run x:Name="paragr" Text="Документ не открыт"/>
                 </Paragraph>
             </FlowDocument>
